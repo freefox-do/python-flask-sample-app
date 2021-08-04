@@ -4,14 +4,10 @@ RUN apt-get update
 RUN apt-get install -q -y wget
 RUN cd / ; wget https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
 
-COPY awslogs.conf.dummy /
+# ADD awslogs.conf.dummy /
 RUN python /awslogs-agent-setup.py -n -r ap-southeast-2 -c ./awslogs.conf.dummy
-# ONBUILD ADD aws.conf       /var/awslogs/etc/aws.conf
-# ONBUILD ADD awslogs.conf /var/awslogs/etc/awslogs.conf
-
-COPY run-services.sh /
-RUN chmod a+x /run-services.sh
-CMD /run-services.sh
+RUN systemctl enable awslogsd.service
+RUN systemctl start awslogsd
 
 ENV FLASK_APP=flaskr
 ENV FLASK_ENV=development
