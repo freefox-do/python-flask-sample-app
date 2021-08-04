@@ -10,6 +10,8 @@ COPY /aws-log/awslogs.conf.dummy /var/awslogs/etc/awslogs.conf
 RUN systemctl enable awslogsd.service
 RUN systemctl start awslogsd
 
+RUN pip --no-cache-dir install --upgrade awscli
+
 ENV FLASK_APP=flaskr
 ENV FLASK_ENV=development
 
