@@ -80,6 +80,14 @@ def create():
                 (title, body, g.user["id"]),
             )
             db.commit()
+            
+            """Write to post-log file"""
+            dateTimeObj = datetime.now()
+            size = len(body)
+            with open('/var/log/post.log','a') as f:
+                f.write(str("timestamp:")+str(dateTimeObj)+str(",size:")+str(size)+str(",user_id:")+str(id))
+            """end: Write to post-log file"""
+            
             return redirect(url_for("blog.index"))
 
     return render_template("blog/create.html")
