@@ -1,16 +1,14 @@
 FROM python:3.8.2-alpine3.11
 
-RUN apt-get update
-RUN apt-get install -q -y wget
+RUN apk update
+RUN apk add -q wget
+RUN apk add openrc --no-cache
+
+# install awslogs agent /
 RUN cd / ; wget https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
-
-# ADD awslogs.conf.dummy /
-RUN python /aws-log/awslogs-agent-setup.py -n -r ap-southeast-2 -c ./aws-log/awslogs.conf.dummy
-COPY /aws-log/awslogs.conf.dummy /var/awslogs/etc/awslogs.conf
-RUN systemctl enable awslogsd.service
-RUN systemctl start awslogsd
-
-RUN pip --no-cache-dir install --upgrade awscli
+RUN pip install awslogs
+RUN pip install awscli-cwlogs
+COPY ./aws-log/awslogs.conf.dummy /var/awslogs/etc/awslogs.conf
 
 ENV FLASK_APP=flaskr
 ENV FLASK_ENV=development
@@ -26,6 +24,8 @@ RUN flask init-db
 EXPOSE 5000
 
 CMD [ "flask", "run", "--host=0.0.0.0" ]
+
+
 
 
 
