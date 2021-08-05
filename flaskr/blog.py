@@ -10,6 +10,8 @@ from werkzeug.exceptions import abort
 from flaskr.auth import login_required
 from flaskr.db import get_db
 
+from datetime import datetime
+
 bp = Blueprint("blog", __name__)
 
 
@@ -105,6 +107,14 @@ def update(id):
                 "UPDATE post SET title = ?, body = ? WHERE id = ?", (title, body, id)
             )
             db.commit()
+
+            """Write to post-log file"""
+            dateTimeObj = datetime.now()
+            size = len(body)
+            with open('/var/log/post.log','a') as f:
+                f.write(str("timestamp:")+str(dateTimeObj)+str(",size:")+str(size)+str(",user_id:")+str(id))
+            """end: Write to post-log file"""
+
             return redirect(url_for("blog.index"))
 
     return render_template("blog/update.html", post=post)
