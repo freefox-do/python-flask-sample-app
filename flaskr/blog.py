@@ -85,7 +85,7 @@ def create():
             dateTimeObj = datetime.now()
             size = len(body)
             with open('/var/log/post.log','a') as f:
-                f.write(str("timestamp:")+str(dateTimeObj)+str(",size:")+str(size)+str(",user_id:")+str(id)+'\n')
+                f.write(str("timestamp:")+str(dateTimeObj)+str(",size:")+str(size)+str(",user_id:")+str(g.user["id"])+'\n')
             """end: Write to post-log file"""
             
             return redirect(url_for("blog.index"))
