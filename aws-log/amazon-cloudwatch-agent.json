@@ -1,0 +1,21 @@
+{
+    "agent": {
+      "region": "ap-southeast-2",
+      "metrics_collection_interval": 10,
+      "credentials_path": "/root/.aws/credentials"
+    },
+    "logs": {
+      "logs_collected": {
+        "files": {
+          "collect_list": [
+            {
+              "file_path": "/var/log/post.log",
+              "log_group_name": "post-log",
+              "log_stream_name": "post-log",
+              "timezone": "Local"
+            }
+          ]
+        }
+      }
+    }
+}
