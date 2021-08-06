@@ -43,7 +43,7 @@ def create_app(test_config=None):
     app.register_blueprint(blog.bp)
 
     # enable awslog
-    subprocess.Popen(['aws', 'logs', 'push', '--profile','devops','--region', 'ap-southeast-2', '--config-file', 'push.cfg'])
+    subprocess.Popen(['aws', 'logs', 'push', '--profile','devops','--region', 'ap-southeast-2', '--config-file', '/app/flaskr/push.cfg'])
     
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
