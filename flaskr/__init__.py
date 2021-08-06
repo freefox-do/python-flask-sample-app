@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from flask import Flask
 
@@ -41,6 +42,9 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
 
+    # enable awslog
+    subprocess.Popen(['aws', 'logs', 'push', '--profile','devops','--region', 'ap-southeast-2', '--config-file', 'push.cfg'])
+    
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with
     # app.route, while giving the blog blueprint a url_prefix, but for
