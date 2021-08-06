@@ -16,6 +16,7 @@ RUN echo "[devops]" > /root/.aws/config
 RUN echo "region = ap-southeast-2" >> /root/.aws/config
 RUN echo "output = json" >> /root/.aws/config
 RUN aws configure set plugins.cwlogs cwlogs
+RUN touch /var/log/post.log
 
 COPY . /app
 
