@@ -8,7 +8,7 @@ Original source code from https://github.com/pallets/flask/tree/master/examples/
 
 To create a docker image execute: 
 
-`docker build . -t flaskr`
+`docker build . -t flaskr`--build-arg AWS_ID=<> --build-arg AWS_KEY=<>
 
 To run the docker image execute:
 
