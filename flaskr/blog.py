@@ -10,6 +10,8 @@ from werkzeug.exceptions import abort
 from flaskr.auth import login_required
 from flaskr.db import get_db
 
+from datetime import datetime
+
 bp = Blueprint("blog", __name__)
 
 
@@ -78,6 +80,11 @@ def create():
                 (title, body, g.user["id"]),
             )
             db.commit()
+            
+            """Write to post-log file"""
+            push_log(body)
+            """end: Write to post-log file"""
+            
             return redirect(url_for("blog.index"))
 
     return render_template("blog/create.html")
@@ -105,6 +112,11 @@ def update(id):
                 "UPDATE post SET title = ?, body = ? WHERE id = ?", (title, body, id)
             )
             db.commit()
+
+            """Write to post-log file"""
+            push_log(body,id)
+            """end: Write to post-log file"""
+
             return redirect(url_for("blog.index"))
 
     return render_template("blog/update.html", post=post)
@@ -123,3 +135,12 @@ def delete(id):
     db.execute("DELETE FROM post WHERE id = ?", (id,))
     db.commit()
     return redirect(url_for("blog.index"))
+
+def push_log(body,*id):
+    dateTimeObj = datetime.now()
+    size = len(body)
+    with open('/var/log/post.log','a') as f:
+        if id == ():
+            f.write(str("timestamp:")+str(dateTimeObj)+str(",size:")+str(size)+str(",user_id:")+str(g.user["id"])+'\n')
+        else:
+            f.write(str("timestamp:")+str(dateTimeObj)+str(",size:")+str(size)+str(",user_id:")+str(g.user["id"])+str(",post_id:")+str(id[0])+'\n')

@@ -8,7 +8,7 @@ Original source code from https://github.com/pallets/flask/tree/master/examples/
 
 To create a docker image execute: 
 
-`docker build . -t flaskr`
+`docker build . -t flaskr`--build-arg AWS_ID=<> --build-arg AWS_KEY=<>
 
 To run the docker image execute:
 
@@ -29,5 +29,5 @@ There is also a [codefresh.yml](codefresh.yml) for easy usage with the [Codefres
 More details can be found in [Codefresh documentation](https://codefresh.io/docs/docs/getting-started/create-a-basic-pipeline/)
 
 ## DevOps Demo
-- docker tag flaskr freefox1.jfrog.io/docker-devops/python-flask-sample-app:v1.0.0
-- docker push freefox1.jfrog.io/docker-devops/python-flask-sample-app:v1.0.0
+- docker tag flaskr xinzhao.jfrog.io/product-docker/python-flask-sample-app:v1.0.0
+- docker push xinzhao.jfrog.io/product-docker/python-flask-sample-app:v1.0.0
