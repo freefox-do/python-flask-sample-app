@@ -27,13 +27,7 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
-    <repository>
-      <id>jfrog-server</id>
-      <url>http://13.239.84.133:8082/artifactory/kotlin-module/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
+  
     <repository>
       <id>maven-all</id>
       <url>https://jcenter.bintray.com/</url>
@@ -114,12 +108,7 @@
       <version>${kotlin.version}</version>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>docker-build-publish</groupId>
-      <artifactId>docker-build-publish_dsl</artifactId>
-      <version>1.4-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
+    
     <dependency>
        <groupId>org.json</groupId>
        <artifactId>json</artifactId>
