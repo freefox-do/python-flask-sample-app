@@ -6,7 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.commitStatusPu
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.dockerSupport
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
-import com.kotlin.v2019_2.buildTypes.DockerBuild
+
 
 
 version = "2020.2"
