@@ -29,7 +29,7 @@ def lambda_handler(event,context):
     
     #Create format for slack message
     slack_message = {
-        'text' : f':fire: {alarm_name} state is now {new_state}: {reason}\n'
+        'text' : f':fire: {alarm_name} state is now {new_state}: {reason},  got a successful deployment\n'
                  f'```\n{message}```'
                     }
     #retrieve webhook url from parameter store
