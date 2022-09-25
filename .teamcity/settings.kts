@@ -9,7 +9,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
 
 
-version = "2020.4"
+version = "2020.2"
 
 
 project {
