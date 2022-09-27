@@ -23,12 +23,9 @@ create(DslContext.projectId, BuildType({
         script {
             name = "DeployToK8s"
             scriptContent = """
-                helm repo add helm-demo https://freefox1.jfrog.io/artifactory/helm --username "%artifactory_username%" --password "%artifactory_password%"
-                helm repo update
-                helm upgrade --install python-flask-sample-app helm-demo/python-flask-sample-app
                 infra/cloudwatch-custom-metrics.sh
             """.trimIndent()
-            dockerImage = "freefox1.jfrog.io/docker-devops/deploytok8s:1.0.0"
+            //dockerImage = "freefox1.jfrog.io/docker-devops/deploytok8s:1.0.0"
         }
     }
 }))
