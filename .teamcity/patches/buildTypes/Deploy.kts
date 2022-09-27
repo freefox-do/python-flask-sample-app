@@ -29,8 +29,8 @@ create(DslContext.projectId, BuildType({
         script {
             name = "DeployToK8s"
             scriptContent = """
-                chmod +x ./infra/cloudwatch-custom-metrics.sh
-                ./infra/cloudwatch-custom-metrics.sh
+                chmod +x ./infra/cloudwatch-custom-metrics-alarm-test.sh
+                ./infra/cloudwatch-custom-metrics-alarm-test.sh
             """.trimIndent()
         }
     }
