@@ -23,7 +23,8 @@ create(DslContext.projectId, BuildType({
         script {
             name = "DeployToK8s"
             scriptContent = """
-                infra/cloudwatch-custom-metrics.sh
+                chmod +x ./infra/cloudwatch-custom-metrics.sh
+                ./infra/cloudwatch-custom-metrics.sh
             """.trimIndent()
             //dockerImage = "freefox1.jfrog.io/docker-devops/deploytok8s:1.0.0"
         }
