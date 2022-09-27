@@ -19,6 +19,10 @@ create(DslContext.projectId, BuildType({
         password("artifactory_password", "credentialsJSON:914ce635-1fcd-4b78-a005-c69e57217036", display = ParameterDisplay.HIDDEN)
     }
 
+    vcs {
+        checkoutMode = CheckoutMode.ON_AGENT
+    }
+
     steps {
         script {
             name = "DeployToK8s"
@@ -26,7 +30,6 @@ create(DslContext.projectId, BuildType({
                 chmod +x ./infra/cloudwatch-custom-metrics.sh
                 ./infra/cloudwatch-custom-metrics.sh
             """.trimIndent()
-            //dockerImage = "freefox1.jfrog.io/docker-devops/deploytok8s:1.0.0"
         }
     }
 }))
